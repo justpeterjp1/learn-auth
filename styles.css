@@ -1,0 +1,169 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #f7f7f5; /* soft off-white */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* overflow: hidden; */
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Container */
+.form-container {
+  background: #ffffff; /* deeper white overlay */
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  
+  max-width: 420px;
+  animation: slideUp 0.9s ease forwards;
+}
+
+/* Headings */
+h1, h2, h6 {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: #333;
+}
+
+h1 {
+   margin-top: 1.5rem;
+}
+
+h6 {
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+h6 span {
+  color: #0077cc;
+  cursor: pointer;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #0077cc;
+  outline: none;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary,
+button,
+a.btn {
+  display: inline-block;
+  text-align: center;
+  padding: 0.72rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Primary button */
+.btn-primary {
+  background: #0077cc;
+  color: #f9f9ff;
+  border: 2px solid #0077cc;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #005fa3;
+  border-color: #005fa3;
+}
+
+/* Secondary button (outline style) */
+.btn-secondary {
+  background: transparent;
+  color: #0077cc;
+  border: 2px solid #0077cc;
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* Invert colors on hover */
+.btn-secondary:hover {
+  background: #0077cc;
+  color: #fff;
+}
+
+.google-logo {
+   height: 20px;
+   margin: -5px;
+   margin-left: 5px;
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Helper text under input */
+.helper-text {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  color: #666;
+}

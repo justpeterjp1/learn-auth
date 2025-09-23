@@ -8,20 +8,32 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-        <h6>Or continue with <span><i class="fa-brands fa-google"></i></span></h6>
-    <form action="" class="form-container">
-        <h1>Sign up with us to get unlimited access</h1>
-        <label for="name">Username</label>
-        <input type="text" placeholder="Choose a Username" required>
-        <label for="mail">Email</label>
-        <input type="email" placeholder="Your Email" required>
-        <label for="password">Choose a Password</label>
+    <!-- style them mostly using tag-names -->
+     <!-- But you can adopt a better styling method using classes in which case add the classes yourself
+      e.g add a class of btn to all button and links and style them once to look the same -->
+      <div class="form-container">
+         <form action="" class="form">
+        <h1>Welcome back</h1>
+        <h2>Login to your account</h2>
+        <div class="form-item">
+            <label for="name">Username/Email</label>
+        <input type="text" placeholder="Type in Username or password" required>
+        </div>
+        <div class="form-item">
+            <label for="password">Password</label>
         <input type="password" placeholder="Input password" required>
-        <label for="password">Confirm Password</label>
-        <input type="password" placeholder="Confirm password" required>
-        <input type="submit">
+        </div>
+        
+        <input class="btn-primary" type="submit" placeholder="login">
+        <a href="/password.html">forgot password</a>
+        <h6>Don't have an account? <span><a href="/signup.html">Sign Up</a></span></h6>
+        <h6>Or continue with <span><img class="google-logo" src="/assets/logos/google.svg" alt=""></span></h6>
     </form>
-    <h6>Already have an account? <span><a href="/login.html">Sign in</a></span></h6>
+      </div>
+        
+   
+    
+    
     <script src="app.js"></script>
 </body>
 </html>
