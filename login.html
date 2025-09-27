@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="form-container">
+    <form id="loginForm" class="form">
+      <h1>Welcome back</h1>
+      <h2>Login to your account</h2>
+
+      <div class="form-item">
+        <label for="loginEmail"><i class="fa fa-user"></i> Username/Email</label>
+        <input type="text" id="loginEmail" placeholder="Type in Username or Email" required>
+         <p id="loginEmailError" class="text-red-600 text-sm mt-1 hidden"></p>
+      </div>
+
+      <div class="form-item">
+        <label for="loginPassword"><i class="fa fa-lock"></i> Password</label>
+        <input type="password" id="loginPassword" placeholder="Input password" required autocomplete="new-password">
+        <p id="loginPasswordError" class="text-red-600 text-sm mt-1 hidden"></p>
+      </div>
+
+      <input class="btn-primary" type="submit" value="Login">
+
+      <a href="/password.html">Forgot password?</a>
+      <h6>Don't have an account? <span><a href="/signup.html">Sign Up</a></span></h6>
+      <h6>Or continue with <span><img id="googleSignIn" class="google-logo" src="/assets/logos/google.svg" alt="Google Login"></span></h6>
+    </form>
+  </div>
+
+  <script type="module" src="auth.js"></script>
+</body>
+</html>

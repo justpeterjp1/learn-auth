@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocuConvert App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-screen flex flex-col bg-gray-50">
+
+  <!-- Header -->
+ <!-- Header -->
+<header class="flex justify-between items-center bg-white shadow px-6 py-4">
+  <h1 class="text-xl font-bold text-blue-600">DocuConvert</h1>
+  <div class="space-x-3">
+    <!-- Files button (opens sidebar) -->
+    <button id="filesBtn" 
+            class="px-4 py-2 text-sm rounded bg-gray-100 hover:bg-gray-200">
+      📂 Files
+    </button>
+    <!-- Sign out button -->
+    <a id="signoutBtn" href="/login.html" 
+       class="px-4 py-2 text-sm rounded bg-blue-600 text-white hover:bg-blue-700">
+      🚪 Sign out
+    </a>
+  </div>
+</header>
+
+  <!-- Sidebar -->
+<aside id="sidebar" 
+       class="fixed top-0 left-0 w-72 h-full bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-40">
+  <div class="p-6 flex justify-between items-center border-b">
+    <h2 class="text-lg font-bold text-blue-600">File History</h2>
+    <button id="closeSidebar" class="text-gray-500 hover:text-gray-700">✖</button>
+  </div>
+  <ul id="fileList" class="p-6 space-y-3"></ul>
+  <div class="p-6 border-t">
+    <button id="clearHistory" class="w-full bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded">
+      Clear History
+    </button>
+  </div>
+</aside>
+
+<!-- Sidebar backdrop -->
+<div id="sidebarBackdrop" 
+     class="fixed inset-0 bg-black bg-opacity-50 hidden z-30"></div>
+
+
+
+  <!-- Main content -->
+  <main class="flex-1 flex items-center justify-center px-6">
+    <div class="w-full max-w-xl bg-white rounded-xl shadow p-8 text-center">
+      <h2 class="text-2xl font-bold mb-6">Upload & Convert</h2>
+
+      <!-- Upload input -->
+      <input type="file" id="fileInput" class="hidden" />
+      <div id="dropZone" 
+           class="border-2 border-dashed border-gray-300 rounded-lg p-10 cursor-pointer hover:bg-gray-50">
+        <p class="text-gray-600">Drag & drop your DOC or PDF, or click to browse</p>
+      </div>
+
+      <!-- Format selector -->
+      <div class="mt-4">
+        <label for="format" class="block text-gray-700 font-medium mb-2">Convert to:</label>
+        <select id="format" class="w-full border rounded-lg px-3 py-2">
+          <option value="pdf">PDF</option>
+          <option value="docx">DOCX</option>
+        </select>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="w-full mt-6 bg-gray-200 h-3 rounded-full">
+        <div class="bg-blue-600 h-3 rounded-full w-0 transition-all" id="progress"></div>
+      </div>
+
+      <!-- Action button -->
+      <button id="convertBtn" 
+              class="mt-6 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+        Start Free Conversion
+      </button>
+         
+
+
+      <!-- Download link -->
+      <div id="downloadLink" class="mt-6 hidden">
+        <a id="downloadAnchor" href="#" download
+           class="text-blue-600 underline">Download Converted File</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="dashboard.js" type="module">
+  </script>
+
+</body>
+</html>

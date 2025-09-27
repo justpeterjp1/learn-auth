@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up here</title>
-    <link rel="stylesheet" href="styles.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="form-container">
-            <form action="" class="form">
-                <h1>Sign up with us to get unlimited access</h1>
-                <div class="form-item">
-                    <label for="name">Username:</label>
-                <input type="text" placeholder="Choose a Username" required>
-                </div>
-                <div class="form-item">
-                    <label for="mail">Email:</label>
-                <input type="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-item">
-                    <label for="password">Choose a Password:</label>
-                <input type="password" placeholder="Input password" required>
-                </div>
-                <div class="form-item">
-                    <label for="password">Confirm Password:</label>
-                <input type="password" placeholder="Confirm password" required>
-                </div>
-                <input type="submit" class="btn-primary">
-                <h6>Already have an account? <span><a class="btn-secondary" href="/index.html">Sign in</a></span></h6>
-                 <h6>Or continue with <span><img class="google-logo" src="/assets/logos/google.svg" alt=""></span></h6>
-            </form>
-     </div>
-    
-    <script src="app.js"></script>
+  <div class="form-container">
+    <form id="signupForm" class="form">
+      <h1>Sign up with us to get unlimited access</h1>
+
+      <div class="form-item">
+        <label for="signupUsername"><i class="fa fa-user"></i> Username</label>
+        <input type="text" id="signupUsername" placeholder="Choose a Username" required>
+      </div>
+
+      <div class="form-item">
+        <label for="signupEmail"><i class="fa fa-envelope"></i> Email</label>
+        <input type="email" id="signupEmail" placeholder="Your Email" required>
+      </div>
+
+      <div class="form-item">
+        <label for="signupPassword"><i class="fa fa-lock"></i> Password</label>
+        <input type="password" id="signupPassword" placeholder="Input password" required autocomplete="new-password">
+      </div>
+
+      <div class="form-item">
+        <label for="signupConfirmPassword"><i class="fa fa-lock"></i> Confirm Password</label>
+        <input type="password" id="signupConfirmPassword" placeholder="Confirm password" required autocomplete="new-password">
+      </div>
+      <p id="signupError" class="text-red-600 text-sm mt-1 hidden"></p>
+
+      <input type="submit" class="btn-primary" value="Sign Up">
+
+      <h6>Already have an account? <span><a class="btn-secondary" href="/login.html">Sign in</a></span></h6>
+      <h6>Or continue with <span><img id="googleSignIn" class="google-logo" src="/assets/logos/google.svg" alt="Google Login"></span></h6>
+    </form>
+  </div>
+
+  <script type="module" src="auth.js"></script>
 </body>
 </html>

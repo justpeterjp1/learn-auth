@@ -1,39 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up here</title>
-    <link rel="stylesheet" href="styles.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocuConvert App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <!-- style them mostly using tag-names -->
-     <!-- But you can adopt a better styling method using classes in which case add the classes yourself
-      e.g add a class of btn to all button and links and style them once to look the same -->
-      <div class="form-container">
-         <form action="" class="form">
-        <h1>Welcome back</h1>
-        <h2>Login to your account</h2>
-        <div class="form-item">
-            <label for="name">Username/Email</label>
-        <input type="text" placeholder="Type in Username or password" required>
-        </div>
-        <div class="form-item">
-            <label for="password">Password</label>
-        <input type="password" placeholder="Input password" required>
-        </div>
-        
-        <input class="btn-primary" type="submit" placeholder="login">
-        <a href="/password.html">forgot password</a>
-        <h6>Don't have an account? <span><a href="/signup.html">Sign Up</a></span></h6>
-        <h6>Or continue with <span><img class="google-logo" src="/assets/logos/google.svg" alt=""></span></h6>
-    </form>
+
+<body class="h-screen flex flex-col bg-gray-50">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center bg-white shadow px-6 py-4">
+    <h1 class="text-xl font-bold text-blue-600">DocuConvert</h1>
+    <div class="space-x-3">
+      <a href="/login.html" class="px-4 py-2 text-sm rounded bg-gray-100 hover:bg-gray-200">Log In</a>
+      <a href="/signup.html" class="px-4 py-2 text-sm rounded bg-blue-600 text-white hover:bg-blue-700">Sign Up</a>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-1 flex items-center justify-center px-6">
+    <div class="w-full max-w-xl bg-white rounded-xl shadow p-8 text-center">
+      <h2 class="text-2xl font-bold mb-6">Upload & Convert</h2>
+
+      <!-- Upload input -->
+      <input type="file" id="fileInput" class="hidden" />
+      <div id="dropZone" 
+           class="border-2 border-dashed border-gray-300 rounded-lg p-10 cursor-pointer hover:bg-gray-50">
+        <p class="text-gray-600">Drag & drop your DOC or PDF, or click to browse</p>
       </div>
-        
-   
+
+      <!-- Format selector -->
+      <div class="mt-4">
+        <label for="format" class="block text-gray-700 font-medium mb-2">Convert to:</label>
+        <select id="format" class="w-full border rounded-lg px-3 py-2">
+          <option value="pdf">PDF</option>
+          <option value="docx">DOCX</option>
+        </select>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="w-full mt-6 bg-gray-200 h-3 rounded-full">
+        <div class="bg-blue-600 h-3 rounded-full w-0 transition-all" id="progress"></div>
+      </div>
+
+      <!-- Action button -->
+      <button id="convertBtn" 
+              class="mt-6 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+        Start Free Conversion
+      </button>
+      <!-- Converion counter -->
+          <div class="counter-container">
+        <p id="conversionCount">Conversions used: 0/3</p>
+        </div>
+        <div id="signinModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Sign in required</h2>
+    <p>You’ve reached your free conversion limit. Please sign in to continue enjoying more conversions for free.</p>
+    <a href="/login.html" class="btn-primary">Sign in</a>
+    <button id="closeSigninModal" class="btn-secondary">Close</button>
+  </div>
+</div>
+
+
+      <!-- Download link -->
+      <div id="downloadLink" class="mt-6 hidden">
+        <a id="downloadAnchor" href="#" download
+           class="text-blue-600 underline">Download Converted File</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js">
     
-    
-    <script src="app.js"></script>
+  </script>
+
 </body>
 </html>
