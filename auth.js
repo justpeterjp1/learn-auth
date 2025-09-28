@@ -30,7 +30,10 @@ const firebaseConfig = {
 // Initialize
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
+const db = initializeFirestore(app, {
+  experimentalForceLongPolling: true, // helps on mobile networks
+  useFetchStreams: false
+});
 
 // ================== Helpers ==================
 async function getEmailFromUsername(username) {
