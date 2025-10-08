@@ -11,10 +11,11 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { 
-  getFirestore, 
+  initializeFirestore, 
   doc, 
   setDoc, 
-  getDoc 
+  getDoc,
+  onSnapshot
 } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 // ================== Firebase Config ==================
@@ -22,18 +23,28 @@ const firebaseConfig = {
   apiKey: "AIzaSyC12AAO8ppGvp8YxKeuUsz_coJEsPJzGGI",
   authDomain: "learn-auth-9ca72.firebaseapp.com",
   projectId: "learn-auth-9ca72",
-  storageBucket: "learn-auth-9ca72.firebasestorage.app",
+  storageBucket: "learn-auth-9ca72.appspot.com", // ✅ FIXED
   messagingSenderId: "827076262824",
   appId: "1:827076262824:web:2786488c8fe24a97463b9d",
   measurementId: "G-XV4W3CMWEV"
 };
-// Initialize
+
+// ================== Initialize Firebase ==================
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
+// ✅ Use initializeFirestore for mobile stability
 const db = initializeFirestore(app, {
-  experimentalForceLongPolling: true, // helps on mobile networks
+  experimentalForceLongPolling: true,
   useFetchStreams: false
 });
+
+// ================== Debug Firestore Connectivity ==================
+console.log("🔗 Firestore initialized:", db);
+onSnapshot(doc(db, "usernames", "test"),
+  () => console.log("✅ Firestore online"),
+  (err) => console.error("❌ Firestore error", err)
+);
 
 // ================== Helpers ==================
 async function getEmailFromUsername(username) {
@@ -45,6 +56,8 @@ async function getEmailFromUsername(username) {
 function showError(el, msg) {
   el.textContent = msg;
   el.classList.remove("hidden");
+  el.classList.remove("text-green-600");
+  el.classList.add("text-red-600");
 }
 function showSuccess(el, msg) {
   el.textContent = msg;
@@ -57,8 +70,7 @@ function clearMessages(...els) {
     if (!el) return;
     el.textContent = "";
     el.classList.add("hidden");
-    el.classList.remove("text-green-600");
-    el.classList.add("text-red-600");
+    el.classList.remove("text-green-600", "text-red-600");
   });
 }
 

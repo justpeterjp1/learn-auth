@@ -132,37 +132,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  convertBtn.addEventListener("click", () => {
-    if (!selectedFile) {
-      alert("Please select a file first.");
-      return;
-    }
+  convertBtn.addEventListener("click", async () => {
+  if (!selectedFile) {
+    console.error("Please select a file first.");
+    return;
+  }
 
-    const format = formatSelect.value;
-    progressBar.style.width = "0%";
-    downloadLink.classList.add("hidden");
+  const format = formatSelect.value;
+  progressBar.style.width = "0%";
+  downloadLink.classList.add("hidden");
 
+  // Prepare request for backend
+  const formData = new FormData();
+  formData.append("file", selectedFile);
+  formData.append("format", format);
+
+  try {
+    // Fake progress animation
     let progress = 0;
     const interval = setInterval(() => {
-      progress += 20;
+      progress += 15;
+      if (progress > 90) progress = 90;
       progressBar.style.width = progress + "%";
-      if (progress >= 100) {
-        clearInterval(interval);
+    }, 400);
 
-        // Simulated converted file
-        const convertedName = selectedFile.name.replace(/\.[^/.]+$/, "") + "." + format;
-        const fakeUrl = "#"; // Replace with backend URL later
-        downloadAnchor.href = fakeUrl;
-        downloadAnchor.download = convertedName;
-        downloadAnchor.textContent = `Download ${convertedName}`;
-        downloadLink.classList.remove("hidden");
+    const response = await fetch("http://localhost:5000/convert", {
+      method: "POST",
+      body: formData
+    });
 
-        // Save to history
-        addFileToHistory(convertedName, fakeUrl);
-      }
-    }, 300);
-  });
+    clearInterval(interval);
 
-  // Init history
-  loadHistory();
+    if (!response.ok) throw new Error("Conversion failed");
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const convertedName = selectedFile.name.replace(/\.[^/.]+$/, "") + "." + format;
+
+    // ✅ Set link
+    downloadAnchor.href = url;
+    downloadAnchor.download = convertedName;
+    downloadAnchor.textContent = `⬇ Download ${convertedName}`;
+    downloadLink.classList.remove("hidden");
+
+    // ✅ Auto-download for Safari/iOS
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = convertedName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    progressBar.style.width = "100%";
+
+    // ✅ Save to history
+    addFileToHistory(convertedName, url);
+
+  } catch (err) {
+    console.error("❌ Conversion error:", err);
+    progressBar.style.width = "0%";
+  }
+});
+    loadHistory();
 });
