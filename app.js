@@ -41,7 +41,7 @@ async function startConversion() {
   }
 
   if (!canConvert()) {
-    document.getElementById("upgradeModal").classList.remove("hidden");
+    document.getElementById("signinModal").classList.remove("hidden");
     return;
   }
 
@@ -64,7 +64,7 @@ async function startConversion() {
     }, 400);
 
     // Call backend
-    const response = await fetch("https://learn-auth.onrender.com", {
+    const response = await fetch("https://learn-auth.onrender.com/convert", {
       method: "POST",
       body: formData
     });

@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
       progressBar.style.width = progress + "%";
     }, 400);
 
-    const response = await fetch("https://learn-auth.onrender.com", {
+    const response = await fetch("https://learn-auth.onrender.com/render", {
       method: "POST",
       body: formData
     });
